@@ -1,0 +1,22 @@
+steps:
+  - name: gcr.io/cloud-builders/yarn
+    args: ["install"]
+  - name: gcr.io/cloud-builders/yarn
+    args: ["build"]
+    secretEnv: ['SPACE_ID', 'ACCESS_TOKEN']
+    env:
+      - 'GATSBY_PREVIEW=false'
+      - 'CONTENTFUL_HOST=cdn.contentful.com'
+  - name: gcr.io/$PROJECT_ID/firebase
+    args: ["deploy"]
+    secretEnv: ['FIREBASE_TOKEN']
+secrets:
+  - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
+    secretEnv:
+      FIREBASE_TOKEN: 'CiQAYE+xkgXeewqwTO2v3CJgTnGt3P8bYmjgw0zD0GbsiGxLuA0SVgCMrszRle72VCCZFlYaaNtCMt4UmYdMBpqESHChnAC7kzrAlhBFod6ZHaEY11/k/g1tyYQCFKwBKvn2xHav3kETuYdTUGIYBgzg5ZUO4e1Y55HLiwqs'
+  - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-space-id'
+    secretEnv:
+      SPACE_ID: 'CiQAcw6TARkGUm3kDAGPveYlkcWDqNOCih2tdPE5nbB3Wc3kZ0YSNQBqCVU0kuZsKMJ9p2ewia9BUCp3z3jYPfLM+SfHf7oE2YeApFZBCj8B023ueUgd6lmri7pr'
+  - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-access-token'
+    secretEnv:
+      ACCESS_TOKEN: 'CiQAXpi+JXTujq5LWJRNjD2s8T50mi7Ek5knU1SuBbnzphbHnioSVADNCvDLahdRW8tCGQ9VsiSK3nFUAUDOcvMfSwbyARLhFTHeLv43Rg0ow0C39o27Lxp5P5+5P7puiAOMjONQk81uoWEVjBG9gZU6SSRoPKT/9f8TfA=='

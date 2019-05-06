@@ -162,6 +162,5 @@ module.exports = {
         color: config.themeColor,
       },
     },
-    'gatsby-plugin-netlify',
   ],
 }

@@ -1,13 +1,10 @@
-# gatsby-starter-gcn
+# gatsby-contentful-firebase
 
-A starter template to build amazing static websites with Gatsby, Contentful and Netlify. Inspired by [gatsby-contentful-starter](https://github.com/contentful-userland/gatsby-contentful-starter).
-
-For Gatsby `v1` please use the [v1 branch](https://github.com/ryanwiemer/gatsby-starter-gcn/tree/v1)
+A starter template to build amazing static websites with Gatsby, Contentful, Google Cloud build and Firebase hosting. Inspired by [gatsby-starter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn).
 
 ## Features
 
 - Contentful integration with ready to go placeholder content
-- Netlify integration including a pre-built contact form
 - Minimal responsive design - made to customize or tear apart
 - Pagination logic
 - Styled components
@@ -24,7 +21,7 @@ For Gatsby `v1` please use the [v1 branch](https://github.com/ryanwiemer/gatsby-
 
 ## Demo
 
-https://gcn.netlify.com/
+https://gatsby-contentful-firebase.firebaseapp.com/
 
 ![](screenshots/demo.jpg)
 

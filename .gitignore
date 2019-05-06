@@ -7,3 +7,5 @@ yarn*
 contentful-import-error-log*
 .env*
 .contentful.json
+.idea/
+.firebase/

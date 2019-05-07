@@ -69,9 +69,9 @@ Edit [`/src/styles/theme.js`](https://github.com/dcifuen/gatsby-contentful-fireb
 
 ## Deployment
 
-Create a new Google Cloud project [in the console](https://console.cloud.google.com) and enable billing.
-
-Before the first deployment make sure you have installed and configured your GCloud and Firebase CLIs with the new project.
+1. Create a new Google Cloud project [in the console](https://console.cloud.google.com) and enable billing. Create a Firebase project for the same project ID [in the console](https://console.firebase.google.com).
+2. Replace `gatsby-contentful-firebase` with your project ID in `.firebaserc`
+3. Before the first deployment make sure you have installed and configured your GCloud and Firebase CLIs with the new project.
 ```bash
 gcloud init
 firebase login

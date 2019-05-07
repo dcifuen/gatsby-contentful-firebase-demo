@@ -8,7 +8,7 @@ module.exports = {
   postsPerHomePage: 7, // Number of posts shown on the 1st page of of the index.js template (home page)
   postsPerPage: 6, // Number of posts shown on paginated pages
   author: 'GCF User', // Author for RSS author segment and SEO schema
-  authorUrl: 'https://gcn.netlify.com/about/', // URL used for author and publisher schema, can be a social profile or other personal site
+  authorUrl: 'https://gatsby-contentful-firebase.firebaseapp.com/about/', // URL used for author and publisher schema, can be a social profile or other personal site
   userTwitter: '@dcifuen', // Change for Twitter Cards
   shortTitle: 'GCF App', // Used for App manifest e.g. Mobile Home Screen
   shareImage: '/logos/share.jpg', // Open Graph Default Share Image. 1200x1200 is recommended
@@ -17,5 +17,5 @@ module.exports = {
   siteLogo: '/logos/logo-512.png', // Logo used for SEO, RSS, and App manifest
   backgroundColor: '#e9e9e9', // Used for Offline Manifest
   themeColor: '#121212', // Used for Offline Manifest
-  copyright: 'Copyright © 2018 GCN User', // Copyright string for the RSS feed
+  copyright: 'Copyright © 2018 GCF User', // Copyright string for the RSS feed
 }

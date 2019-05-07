@@ -59,6 +59,22 @@ const Footer = () => (
       </Item>
       <Item>
         <a
+          href="https://github.com/dcifuen/gatsby-contentful-firebase-demo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          gatsby-contentful-firebase-demo
+        </a>{' '}
+        by{' '}
+        <a
+          href="https://github.com/dcifuen"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @dcifuen
+        </a>
+        <span> inspired by </span>
+        <a
           href="https://github.com/ryanwiemer/gatsby-starter-gcn"
           target="_blank"
           rel="noopener noreferrer"

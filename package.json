@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-gcn",
-  "description": "A starter template to build amazing static websites with Gatsby, Contentful and Netlify",
-  "version": "2.0.5",
-  "repository": "https://github.com/ryanwiemer/gatsby-starter-gcn",
-  "author": "Ryan Wiemer <ryan@ryanwiemer.com>",
+  "name": "gatsby-contentful-firebase-demo",
+  "description": "A starter template to build static websites with Gatsby, Contentful, Google Cloud Build and Firebase hosting",
+  "version": "1.0",
+  "repository": "https://github.com/dcifuen/gatsby-contentful-firebase-demo",
+  "author": "David Cifuentes <david@cifuentes.co>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
     "chalk": "^2.4.2",

@@ -1,6 +1,6 @@
 # gatsby-contentful-firebase-demo
 
-A starter template to build amazing static websites with Gatsby, Contentful, Google Cloud Build and Firebase hosting. Based on [gatsby-starter-gcn](https://github.com/dcifuen/gatsby-contentful-firebase-demo).
+A starter template to build amazing static websites with Gatsby, Contentful, Google Cloud Build and Firebase hosting. Based on [gatsby-starter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn).
 
 ## Features
 
@@ -33,14 +33,14 @@ https://gatsby-contentful-firebase.firebaseapp.com/
 
 ```
 git clone https://github.com/dcifuen/gatsby-contentful-firebase-demo.git
-npm i
+yarn
 ```
 
 ### Setup Contentful
 
 1.  [Sign up](https://www.contentful.com/sign-up/) for Contentful and create a new empty space
 
-2.  `npm run setup`
+2.  `yarn setup`
 
 3.  Enter in the requested info for your Contentful space found here: **app.contentful.com** → **Space Settings** → **API keys**. You will need to provide both a standard API key (first tab) and a management key (second tab).
 
@@ -58,7 +58,7 @@ Edit [`/src/styles/theme.js`](https://github.com/dcifuen/gatsby-contentful-fireb
 
 ### Using Gatsby Standard
 
-1.  Quickly check your code for errors with the `npm test` script
+1.  Quickly check your code for errors with the `yarn test` script
 2.  You can view the [Gatsby Standard README](https://github.com/brandonkal/eslint-config-gatsby-standard) for details on how to integrate this project's included Gatsby Standard, Stylelint, and Prettier modules into your text editor
 
 ### Content and SEO
@@ -66,6 +66,10 @@ Edit [`/src/styles/theme.js`](https://github.com/dcifuen/gatsby-contentful-fireb
 1.  You can replace the `share.jpg` and `logo-512` files in the `static/logos` directory. After replacing these files ensure that you edit the image size dimensions specified in `/src/utils/siteConfig.js`
 2.  Meta descriptions are defined in Contentful. If you choose to leave this field blank on new posts a 320 character excerpt of the post/page will be used.
 3.  **IMPORTANT:** Be sure to manually enter at least one meta description on a page and post in Contentful or the site will fail to build.
+
+### Preview Locally
+
+`yarn develop`
 
 ## Deployment
 

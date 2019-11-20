@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ["build", ".", "--tag", "gcr.io/gatsby-contentful-firebase/gatsby-develop"]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ["push", "gcr.io/gatsby-contentful-firebase/gatsby-develop"]
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['beta', 'run', 'deploy', 'gatsby-develop', '--image', 'gcr.io/gatsby-contentful-firebase/gatsby-develop', '--region', 'europe-west1', '--platform', 'managed', '--allow-unauthenticated']
+
+images:
+  - 'gcr.io/gatsby-contentful-firebase/gatsby-develop'

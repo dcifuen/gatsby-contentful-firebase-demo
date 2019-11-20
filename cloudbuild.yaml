@@ -1,15 +1,15 @@
 steps:
-  - name: gcr.io/cloud-builders/yarn
+  - name: 'gcr.io/cloud-builders/yarn'
     args: ["install"]
-  - name: gcr.io/cloud-builders/yarn
+  - name: 'gcr.io/cloud-builders/yarn'
     args: ["build"]
     secretEnv: ['SPACE_ID', 'ACCESS_TOKEN']
     env:
-      - 'GATSBY_PREVIEW=false'
       - 'CONTENTFUL_HOST=cdn.contentful.com'
-  - name: gcr.io/$PROJECT_ID/firebase
+  - name: 'gcr.io/$PROJECT_ID/firebase'
     args: ["deploy"]
     secretEnv: ['FIREBASE_TOKEN']
+
 secrets:
   - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
     secretEnv:

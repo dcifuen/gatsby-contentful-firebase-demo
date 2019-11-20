@@ -1,8 +1,10 @@
 # gatsby-contentful-firebase-demo
 
-A starter template to build amazing static websites with Gatsby, Contentful, Google Cloud Build and Firebase hosting. Based on [gatsby-starter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn).
+A starter template to build amazing static websites with Gatsby, Contentful, Google Cloud Build, Google Cloud Run and Firebase hosting. Based on [gatsby-starter-gcn](https://github.com/ryanwiemer/gatsby-starter-gcn).
 
 ## Features
+
+All the features offered by the `gatsby-starter-gcn`:
 
 - Contentful integration with ready to go placeholder content
 - Minimal responsive design - made to customize or tear apart
@@ -18,7 +20,11 @@ A starter template to build amazing static websites with Gatsby, Contentful, Goo
 - RSS Feed
 - [Gatsby Standard module](https://www.npmjs.com/package/eslint-config-gatsby-standard) for linting Javascript with StandardJS
 - Stylelint support for Styled Components to lint the CSS in JS
+
+Plus Google Cloud integrations:
+
 - Build with Google Cloud Build
+- On demand preview development server with Google Cloud Run
 - Deployment to Firebase hosting
 
 ## Demo
@@ -43,6 +49,24 @@ yarn
 2.  `yarn setup`
 
 3.  Enter in the requested info for your Contentful space found here: **app.contentful.com** → **Space Settings** → **API keys**. You will need to provide both a standard API key (first tab) and a management key (second tab).
+
+#### Environment Variables
+
+```bash
+export ACCESS_TOKEN="<YOUR CONTENTFUL TOKEN>"
+export PREVIEW_TOKEN="<YOUR CONTENTFUL PREVIEW TOKEN>"
+export SPACE_ID="<YOUR CONTENTFUL SPACE ID>"
+```
+
+### Setup Tools
+
+Before moving on, make sure you have installed and configured your Docker, GCloud and Firebase CLIs with the new project.
+
+```bash
+gcloud init
+firebase login
+gcloud auth configure-docker
+```
 
 ## Customization
 
@@ -71,15 +95,19 @@ Edit [`/src/styles/theme.js`](https://github.com/dcifuen/gatsby-contentful-fireb
 
 `yarn develop`
 
+Or build the Docker container and run it:
+
+```bash
+docker build . --tag gcr.io/<YOUR_PROJECT_ID>/gatsby-develop
+PORT=8080 && docker run -p 8080:${PORT} -e PORT=${PORT} -e ACCESS_TOKEN=${PREVIEW_TOKEN} -e "CONTENTFUL_HOST=${CONTENTFUL_HOST}" -e "ENABLE_GATSBY_REFRESH_ENDPOINT=true" gcr.io/gatsby-contentful-firebase/gatsby-develop
+```
+
+Open your browser on `http://localhost:8080`
+
 ## Deployment
 
 1. Create a new Google Cloud project [in the console](https://console.cloud.google.com) and enable billing. Create a Firebase project for the same project ID [in the console](https://console.firebase.google.com).
 2. Replace `gatsby-contentful-firebase` with your project ID in `.firebaserc`
-3. Before the first deployment make sure you have installed and configured your GCloud and Firebase CLIs with the new project.
-```bash
-gcloud init
-firebase login
-```
 
 ### Google Cloud Build Trigger From Git
 
@@ -113,6 +141,7 @@ gcloud kms keyrings create cloudbuilder --location global
 gcloud kms keys create firebase-token --location global --keyring cloudbuilder --purpose encryption
 gcloud kms keys create contentful-space-id --location global --keyring cloudbuilder --purpose encryption
 gcloud kms keys create contentful-access-token --location global --keyring cloudbuilder --purpose encryption
+gcloud kms keys create contentful-preview-token --location global --keyring cloudbuilder --purpose encryption
 ```
 3. Generate Firebase CI key
 ```bash
@@ -121,8 +150,6 @@ firebase login:ci
 4. Add the following environment variables locally using the previously generated Firebase key, Contentful Space ID and Content Delivery API - access token from Contentful. The variables must be named exactly like this in order to work properly.
 ```bash
 export FIREBASE_TOKEN="<YOUR FIREBASE TOKEN>"
-export ACCESS_TOKEN="<YOUR CONTENTFUL TOKEN>"
-export SPACE_ID="<YOUR CONTENTFUL SPACE ID>"
 ```
 5. Encrypt the tokens
 ```bash
@@ -144,6 +171,12 @@ echo -n $ACCESS_TOKEN | gcloud kms encrypt \
   --location=global \
   --keyring=cloudbuilder \
   --key=contentful-access-token | base64
+echo -n $PREVIEW_TOKEN | gcloud kms encrypt \
+  --plaintext-file=- \
+  --ciphertext-file=- \
+  --location=global \
+  --keyring=cloudbuilder \
+  --key=contentful-preview-token | base64
 ```
 6. Copy the encrypted keys (output from previous commands) within the `cloudbuilder.yaml` configuration file:
 ```yaml
@@ -158,9 +191,17 @@ secrets:
   secretEnv:
     SPACE_ID: '<YOUR_ENCRYPTED_TOKEN>'
 ```
-7. Test the `cloudbuild.yaml` configuration file by submitting a build manually:
+and `cloudbuild.develop.yaml` configuration file:
+```yaml
+- kmsKeyName: 'projects/<YOUR_PROJECT_ID>/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-preview-token'
+  secretEnv:
+    PREVIEW_TOKEN: '<YOUR_ENCRYPTED_TOKEN>'
+
+```
+7. Test both configuration files by submitting a build manually:
 ```bash
 gcloud builds submit --config=cloudbuild.yaml . --project="<YOUR_PROJECT_ID>"
+gcloud builds submit --config=cloudbuild.develop.yaml . --project="<YOUR_PROJECT_ID>"
 ```
 
 ## Additional Settings

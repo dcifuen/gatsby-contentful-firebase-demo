@@ -4,7 +4,18 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ["push", "gcr.io/gatsby-contentful-firebase/gatsby-develop"]
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['beta', 'run', 'deploy', 'gatsby-develop', '--image', 'gcr.io/gatsby-contentful-firebase/gatsby-develop', '--region', 'europe-west1', '--platform', 'managed', '--allow-unauthenticated']
+    args: ['beta', 'run', 'deploy', 'gatsby-develop', '--image', 'gcr.io/gatsby-contentful-firebase/gatsby-develop',
+           '--region', 'europe-west1', '--platform', 'managed', '--allow-unauthenticated',
+           "--set-env-vars", "ENABLE_GATSBY_REFRESH_ENDPOINT=true,CONTENTFUL_HOST=preview.contentful.com,SPACE_ID=$$SPACE_ID,ACCESS_TOKEN=$$ACCESS_TOKEN"]
+    secretEnv: ['SPACE_ID', 'ACCESS_TOKEN']
 
 images:
   - 'gcr.io/gatsby-contentful-firebase/gatsby-develop'
+
+secrets:
+  - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-preview-token'
+    secretEnv:
+      ACCESS_TOKEN: 'CiQA5LtiC68IEFWbY1rq/TZahXU57Zo/P2qZMqoiUqFefo4ABzYSVADhWHClZPkAbKuzrBHu8pT23J/r1jnSVPBywpBy/Hv+mzV0ft4NPZ8q8X/iMP6HBT8EjrUCWCiprvvjm9vX+j8xIjaWT4Q2TU6xOQw/UmergJE6RA=='
+  - kmsKeyName: 'projects/gatsby-contentful-firebase/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-space-id'
+    secretEnv:
+      SPACE_ID: 'CiQAcw6TARkGUm3kDAGPveYlkcWDqNOCih2tdPE5nbB3Wc3kZ0YSNQBqCVU0kuZsKMJ9p2ewia9BUCp3z3jYPfLM+SfHf7oE2YeApFZBCj8B023ueUgd6lmri7pr'

@@ -4,9 +4,8 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ["push", "gcr.io/gatsby-contentful-firebase/gatsby-develop"]
   - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['beta', 'run', 'deploy', 'gatsby-develop', '--image', 'gcr.io/gatsby-contentful-firebase/gatsby-develop',
-           '--region', 'europe-west1', '--platform', 'managed', '--allow-unauthenticated',
-           "--set-env-vars", "ENABLE_GATSBY_REFRESH_ENDPOINT=true,CONTENTFUL_HOST=preview.contentful.com,SPACE_ID=$$SPACE_ID,ACCESS_TOKEN=$$ACCESS_TOKEN"]
+    entrypoint: 'bash'
+    args: ['-c', 'gcloud beta run deploy gatsby-develop --image gcr.io/gatsby-contentful-firebase/gatsby-develop --region europe-west1 --platform managed --allow-unauthenticated --set-env-vars "ENABLE_GATSBY_REFRESH_ENDPOINT=true,CONTENTFUL_HOST=preview.contentful.com,SPACE_ID=$$SPACE_ID,ACCESS_TOKEN=$$ACCESS_TOKEN"']
     secretEnv: ['SPACE_ID', 'ACCESS_TOKEN']
 
 images:

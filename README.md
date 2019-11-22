@@ -191,7 +191,7 @@ secrets:
   secretEnv:
     SPACE_ID: '<YOUR_ENCRYPTED_TOKEN>'
 ```
-and `cloudbuild.develop.yaml` configuration file:
+and `cloudbuild.cloudrun.yaml` configuration file:
 ```yaml
 - kmsKeyName: 'projects/<YOUR_PROJECT_ID>/locations/global/keyRings/cloudbuilder/cryptoKeys/contentful-preview-token'
   secretEnv:
@@ -200,8 +200,8 @@ and `cloudbuild.develop.yaml` configuration file:
 ```
 7. Test both configuration files by submitting a build manually:
 ```bash
-gcloud builds submit --config=cloudbuild.yaml . --project="<YOUR_PROJECT_ID>"
-gcloud builds submit --config=cloudbuild.develop.yaml . --project="<YOUR_PROJECT_ID>"
+gcloud builds submit --config=cloudbuild.cloudrun.yaml . --project="<YOUR_PROJECT_ID>"
+gcloud builds submit --config=cloudbuild.firebase.yaml . --project="<YOUR_PROJECT_ID>"
 ```
 
 ## Additional Settings

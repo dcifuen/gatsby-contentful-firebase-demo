@@ -1,4 +1,4 @@
-FROM node:12-slim
+FROM node:10-slim
 
 ENV ENABLE_GATSBY_REFRESH_ENDPOINT='true', CONTENTFUL_HOST='preview.contentful.com'
 

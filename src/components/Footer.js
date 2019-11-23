@@ -71,7 +71,7 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          @dcifuen (in SPB)
+          @dcifuen (in DevFest SPB 2019)
         </a>
         <span> based on </span>
         <a

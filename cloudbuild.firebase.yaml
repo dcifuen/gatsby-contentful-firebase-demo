@@ -2,6 +2,8 @@ steps:
   - name: 'gcr.io/cloud-builders/yarn'
     args: ["install"]
   - name: 'gcr.io/cloud-builders/yarn'
+    args: ["test"]
+  - name: 'gcr.io/cloud-builders/yarn'
     args: ["build"]
     secretEnv: ['SPACE_ID', 'ACCESS_TOKEN']
     env:

@@ -51,7 +51,7 @@ const Menu = () => {
         <ul>
           <li>
             <Link to="/" activeStyle={activeLinkStyle}>
-              Home (Test)
+              Home (Localhost)
             </Link>
           </li>
           <li>

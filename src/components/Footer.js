@@ -71,7 +71,7 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          @dcifuen (from ?)
+          @dcifuen (from Codecamp Cluj)
         </a>
         <span> based on </span>
         <a

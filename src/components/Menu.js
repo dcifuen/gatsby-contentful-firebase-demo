@@ -44,6 +44,8 @@ const activeLinkStyle = {
   color: 'white',
 }
 
+const where = process.env.NODE_ENV === `production` ? '(Prod)' : '(Dev)';
+
 const Menu = () => {
   return (
     <Header>
@@ -51,7 +53,7 @@ const Menu = () => {
         <ul>
           <li>
             <Link to="/" activeStyle={activeLinkStyle}>
-              Home {process.env.NODE_ENV === `production` ? '(Prod)' : '(Dev)' }
+              Home {where}
             </Link>
           </li>
           <li>

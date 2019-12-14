@@ -51,7 +51,7 @@ const Menu = () => {
         <ul>
           <li>
             <Link to="/" activeStyle={activeLinkStyle}>
-              Home (Localhost)
+              Home {process.env.NODE_ENV === `production` ? '(Prod)' : '(Dev)' }
             </Link>
           </li>
           <li>

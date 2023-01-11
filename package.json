@@ -25,7 +25,7 @@
     "gatsby-remark-prismjs": "^3.2.11",
     "gatsby-source-contentful": "^2.0.71",
     "gatsby-source-filesystem": "^2.0.39",
-    "gatsby-transformer-remark": "^2.4.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "global": "^4.4.0",
     "inquirer": "^6.3.1",
     "lodash": "^4.17.11",
